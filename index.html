@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="col">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Texto</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icono_favicon_pbg.png">
+    <link rel="stylesheet" href="./styles/style.css">
+    
+</head>
+
+<body>
+    <header class="header">
+        <img class="logo" src="./assets/logo_alura.png" alt="Logo de Alura">
+    </header>
+    <main class="presentacion">
+        <section class="presentacion__contenido">
+            <textarea id='campo__texto' class="presentacion__contenido__entrada" cols="40" ,
+                rows="10" placeholder="Ingrese Texto aquí..."></textarea>
+
+            <div class="presentacion__acciones">
+                <div class="presentacion__contenido__texto">
+                    <img id="imagen__logo__informacion" src="./assets/logo_de_informacion.png" alt="">
+                    <p class="presentacion__contenido__texto__informativo">
+                        Solo letras minúsculas y sin acentos
+                    </p>
+                </div>
+                <div class="presentacion__botones">
+                    <button id="encriptar" class="botones presentacion__botones__funciones"
+                        onclick="encriptarMensaje();">Encriptar</button>
+                    <button id="desencriptar" class="botones presentacion__botones__funciones"
+                        onclick="desencriptarMensaje();">Desencriptar</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="presentacion__rectangulo">
+            <div id="mensaje__encriptado__display" class="presentacion__rectangulo__cuerpo oculto">
+                <img id="imagen__mensaje" src="./assets/imagen_sinmensaje.png" alt="Imagen a espera de respuesta">
+                <p id="presentacion__rectangulo__texto__advertencia" class="presentacion__rectangulo__texto">
+                    Ningún mensaje fue encontrado
+                <p>
+
+            </div>
+
+            <p id="presentacion__rectangulo__texto__mensaje" class="presentacion__rectangulo__texto mensaje__ingresar ">
+                Ingresa el texto que desees encriptar o desencriptar.
+            </p>
+            <button id="copiar" class="botones presentacion__rectangulo__boton__copiar  boton__oculto"
+                onclick="copiarTexto();">Copiar</button>
+        </div>
+    </main>
+    
+    <script src="main.js"></script>
+</body>
+
+</html>
