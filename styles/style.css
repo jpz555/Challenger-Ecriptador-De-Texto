@@ -306,7 +306,9 @@ body {
 
     .presentacion{
         align-items: center;
+        gap: 64px;
     }
+
     .presentacion__contenido{
         width: 100%;
         height: 100%; 
