@@ -178,7 +178,7 @@ body {
     line-height: 1.5; 
     flex-grow: 1;
     overflow-y: auto; 
-    overflow-x: auto; 
+    overflow-x: hidden; 
     align-items: flex-start; 
     justify-content: flex-start; 
     white-space: pre-wrap; 
@@ -227,6 +227,7 @@ body {
 .mensaje__solicitud__ingreso{
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-grow: 1;
 }
 
