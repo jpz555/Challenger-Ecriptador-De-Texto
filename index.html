@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encriptador de Texto</title>
+    <title>Encriptador de Texto 1.0.2 - Main</title>
     <link rel="icon" type="image/x-icon" href="./assets/icono_favicon_pbg.png">
     <link rel="stylesheet" href="./styles/style.css">
     
@@ -21,7 +21,7 @@
 
             <div class="presentacion__acciones">
                 <div class="presentacion__contenido__texto">
-                    <img id="imagen__logo__informacion" src="./assets/logo_de_informacion.png" alt="">
+                    <img id="imagen__logo__informacion" src="./assets/logo_de_informacion.png" alt="Logo de Alura">
                     <p class="presentacion__contenido__texto__informativo">
                         Solo letras minúsculas y sin acentos
                     </p>
@@ -35,7 +35,9 @@
             </div>
         </section>
 
-        <div class="presentacion__rectangulo">
+        <section class="presentacion__rectangulo">
+            <div id="campo__respuesta__rec" class="campo__respuesta oculto"></div>
+
             <div id="mensaje__encriptado__display" class="presentacion__rectangulo__cuerpo oculto">
                 <img id="imagen__mensaje" src="./assets/imagen_sinmensaje.png" alt="Imagen a espera de respuesta">
                 <p id="presentacion__rectangulo__texto__advertencia" class="presentacion__rectangulo__texto">
@@ -44,14 +46,17 @@
 
             </div>
 
-            <p id="presentacion__rectangulo__texto__mensaje" class="presentacion__rectangulo__texto mensaje__ingresar ">
+            <p id="presentacion__rectangulo__texto__mensaje" class="presentacion__rectangulo__texto mensaje__solicitud__ingreso">
                 Ingresa el texto que desees encriptar o desencriptar.
             </p>
-            <button id="copiar" class="botones presentacion__rectangulo__boton__copiar  boton__oculto"
+            <button id="copiar" class="botones presentacion__rectangulo__boton__copiar oculto"
                 onclick="copiarTexto();">Copiar</button>
-        </div>
+        </section>
     </main>
-    
+    <footer class="footer">
+        <p class="footer__parrafo">Copyright © 2024 - Desarrollado por Juan Pablo Palacio Zapata - para Alura Latam.
+            Todos los derechos reservados</p>
+    </footer>
     <script src="main.js"></script>
 </body>
 
