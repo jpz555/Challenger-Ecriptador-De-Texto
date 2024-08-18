@@ -1,4 +1,4 @@
-let campoRespuesta = document.querySelector('.presentacion__rectangulo__cuerpo');
+let campoRespuesta = document.querySelector('.campo__respuesta')
 let AnunciomensajeCopiado = "Mensaje copiado con exito";
 
 let valoresEncriptacion = {
@@ -15,11 +15,10 @@ function obtenerMensajeUsuario() {
     return mensajeUsuario;
 
 }
- 
+
 function modficarClases(seleccion = 'remove', idElemento, clase) {
     let elemento = document.getElementById(idElemento);
     if (seleccion === 'remove') {
-
         elemento.classList.remove(clase);
 
     } else {
@@ -27,90 +26,95 @@ function modficarClases(seleccion = 'remove', idElemento, clase) {
     }
 }
 
-function modificarEstilos(nombe_clase) {
-    const elemento = document.querySelector(nombe_clase);
-    elemento.style.cssText = `align-items: flex-start; 
-                            justify-content: flex-start; 
-                            white-space: pre-wrap; 
-                            word-wrap: break-word; 
-                            text-align:left;`
-        ;
+
+function estadoSinMensajaUsuario() {
+    modficarClases('remove', 'mensaje__encriptado__display', 'oculto');
+    modficarClases('remove', 'presentacion__rectangulo__texto__mensaje', 'oculto');
+    modficarClases('add', 'copiar', 'oculto');
+    campoRespuesta.classList.add('oculto');
+    modficarClases('remove', 'presentacion__rectangulo__texto__mensaje', 'mensaje__solicitud__ingreso')
+    mostrarMensajePantalla('');
 }
 
-function ocultarCosas(clase) {
-    modficarClases('remove', 'copiar', clase);
-    modficarClases('remove', 'mensaje__encriptado__display', clase);
-    modficarClases('remove', "presentacion__rectangulo__texto__mensaje", "mensaje__ingresar");
+function estadoEntradaExitosaUsuario() {
+    modficarClases('add', "mensaje__encriptado__display", 'oculto');
+    modficarClases('add', 'presentacion__rectangulo__texto__mensaje', 'oculto');
+    modficarClases('remove', 'copiar', 'oculto');
+    modficarClases('remove', 'presentacion__rectangulo__texto__mensaje', 'mensaje__solicitud__ingreso')
+    campoRespuesta.classList.remove('oculto')
 
-}
-
-function aparecerObjetosPantallaTexto() {
-    modficarClases('remove', "mensaje__encriptado__display", 'oculto');
-    modficarClases('add', 'presentacion__rectangulo__texto__mensaje', 'mensaje__oculto');
-    modficarClases('remove', 'copiar', 'boton__oculto');
 }
 
 function mostrarMensajePantalla(mensaje) {
-    return campoRespuesta.innerHTML = mensaje;
+    return campoRespuesta.textContent = mensaje;
 
 }
 
 function comprobarMensajeUsuario() {
     let mensajeUsuario = obtenerMensajeUsuario();
     if (mensajeUsuario.trim() === "" || mensajeUsuario === "ingrese texto aqui...") {
-        ocultarCosas('oculto')
+        estadoSinMensajaUsuario();
         return false;
+
     } else {
-        modificarEstilos('.presentacion__rectangulo__cuerpo');
-        aparecerObjetosPantallaTexto();
+        estadoEntradaExitosaUsuario();
         return true;
     }
 }
 
+
+
 function encriptarMensaje() {
-    let mensajeUsuario = obtenerMensajeUsuario();
 
     if (!comprobarMensajeUsuario()) {
-        return console.log('No funciona esta parte - comprobarMensaje')
-
+        //return console.log('No funciona esta parte - comprobarMensaje')
 
     } else {
-        let mensajeEncriptado = "";
-        for (let i = 0; i < mensajeUsuario.length; i++) {
-            let claveMensaje = mensajeUsuario[i];
-            if (valoresEncriptacion[claveMensaje]) {
-                mensajeEncriptado += valoresEncriptacion[claveMensaje];
-            } else
-                mensajeEncriptado += claveMensaje;
-
-        }
-        mostrarMensajePantalla(mensajeEncriptado);
+        encriptar();
     }
 }
 
 function desencriptarMensaje() {
-    let mensajeUsuario = obtenerMensajeUsuario();
-
     if (!comprobarMensajeUsuario()) {
-
+        
     } else {
-        let mensajeDesencriptado = mensajeUsuario;
-        let clavesOrdenadas = Object.keys(valoresEncriptacion).sort((a, b) => valoresEncriptacion[b].length - valoresEncriptacion[a].length);
-
-        // Uso de loop para iterar sobre la colección de claves ordenadas
-        for (let clave of clavesOrdenadas) {
-            let palabraDesencriptada = valoresEncriptacion[clave];
-            let regex = new RegExp(palabraDesencriptada, 'g');
-            mensajeDesencriptado = mensajeDesencriptado.replace(regex, clave);
-
-        }
-        mostrarMensajePantalla(mensajeDesencriptado);
+        desencriptar();
     }
 
 }
 
+function encriptar() {
+    let mensajeUsuario = obtenerMensajeUsuario();
+    let mensajeEncriptado = "";
+    for (let i = 0; i < mensajeUsuario.length; i++) {
+        let claveMensaje = mensajeUsuario[i];
+        if (valoresEncriptacion[claveMensaje]) {
+            mensajeEncriptado += valoresEncriptacion[claveMensaje];
+        } else
+            mensajeEncriptado += claveMensaje;
+
+    }
+    mostrarMensajePantalla(mensajeEncriptado);
+}
+
+function desencriptar() {
+    let mensajeUsuario = obtenerMensajeUsuario();
+    let mensajeDesencriptado = mensajeUsuario;
+    let clavesOrdenadas = Object.keys(valoresEncriptacion).sort((a, b) => valoresEncriptacion[b].length - valoresEncriptacion[a].length);
+
+    // Uso de loop para iterar sobre la colección de claves ordenadas
+    for (let clave of clavesOrdenadas) {
+        let palabraDesencriptada = valoresEncriptacion[clave];
+        let regex = new RegExp(palabraDesencriptada, 'g');
+        mensajeDesencriptado = mensajeDesencriptado.replace(regex, clave);
+
+    }
+    mostrarMensajePantalla(mensajeDesencriptado);
+}
+
+
 function copiarTexto() {
-    let mensajeEncriptadoCopia = document.getElementById('mensaje__encriptado__display').textContent;
+    let mensajeEncriptadoCopia = document.getElementById('campo__respuesta__rec').textContent;
     return navigator.clipboard.writeText(mensajeEncriptadoCopia).then(function () {
         alert(AnunciomensajeCopiado);
     }, function (err) {
@@ -118,4 +122,3 @@ function copiarTexto() {
     }
     );
 }
-
