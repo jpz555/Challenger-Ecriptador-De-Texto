@@ -194,12 +194,12 @@ body {
     justify-content: center;
     width: 100%;
     margin: 0;
-    padding: 15px; 
+    /*padding: 15px;*/ 
     line-height: 1.5; 
     flex-grow: 1;
     overflow-y: auto; 
-    overflow-x: auto; 
-    
+    overflow-x: auto;
+   
 }
 
 .presentacion__rectangulo__cuerpo img{ 
