@@ -1,5 +1,5 @@
 let campoRespuesta = document.querySelector('.campo__respuesta')
-let AnunciomensajeCopiado = "Mensaje copiado con exito";
+let AnunciomensajeCopiado = "¡Mensaje copiado con exito!";
 
 let valoresEncriptacion = {
     "e": "enter",
